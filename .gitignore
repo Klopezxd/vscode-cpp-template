@@ -12,7 +12,6 @@ mingw64/
 *.dll
 
 # Configuraciones personales de VS Code (no subir)
-.vscode/launch.json
 .vscode/*.code-workspace
 
 # Archivos de sistema Windows
