@@ -1,0 +1,20 @@
+# Ignorar todo dentro de bin excepto .gitkeep para mantener la carpeta vacía
+bin/*
+!bin/.gitkeep
+
+# Ignorar compilador portable MinGW
+mingw64/
+
+# Archivos compilados y ejecutables
+*.exe
+*.obj
+*.o
+*.dll
+
+# Configuraciones personales de VS Code (no subir)
+.vscode/launch.json
+.vscode/*.code-workspace
+
+# Archivos de sistema Windows
+Thumbs.db
+desktop.ini
