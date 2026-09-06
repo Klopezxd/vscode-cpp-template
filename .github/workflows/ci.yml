@@ -23,11 +23,9 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y ninja-build
 
-      - name: Configurar MinGW en Windows
+      - name: Configurar entorno de compilación en Windows
         if: runner.os == 'Windows'
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Configurar proyecto con CMake y Ninja
         run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
