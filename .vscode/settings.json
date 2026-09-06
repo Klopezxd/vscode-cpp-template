@@ -4,6 +4,16 @@
   "cmake.generator": "Ninja",
   "cmake.buildDirectory": "${workspaceFolder}/build",
   "cmake.configureOnOpen": true,
+  "editor.formatOnSave": true,
+  "C_Cpp.formatting": "clangFormat",
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.formatOnSave": true
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.formatOnSave": true
+  },
   "files.associations": {
     "*.h": "c",
     "*.hpp": "cpp"

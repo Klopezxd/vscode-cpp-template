@@ -43,6 +43,7 @@ MiTarea/
 ├── .vscode/               <-- Contiene settings.json, launch.json y extensions.json
 ├── src/                   <-- Pon aquí tu main.cpp o ejercicio.c
 ├── CMakeLists.txt         <-- El cerebro de la compilación
+├── .clang-format          <-- Reglas de Clean Code y autoformateo
 └── .gitignore             <-- Para no subir basura a git
 ```
 
@@ -151,3 +152,4 @@ cmake --build build
 2. **IntelliSense automático:** CMake Tools genera la base de datos de compilación automáticamente. No necesitas lidiar con archivos `c_cpp_properties.json` ni escribir rutas de include a mano.
 3. **Compilación incremental instantánea:** Ninja solo recompila los archivos modificados, ahorrando tiempo en proyectos con varios archivos.
 4. **Multiplataforma:** La misma estructura y `CMakeLists.txt` funcionan sin cambios en Windows, WSL2 y Linux.
+5. **Clean Code Automático:** Incluye `.clang-format` preconfigurado con reglas estándar de la industria. Al guardar con **`Ctrl + S`**, VS Code alinea la indentación a 4 espacios, ordena includes y formatea llaves automáticamente sin alterar la lógica de tu código.

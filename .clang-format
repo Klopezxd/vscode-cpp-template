@@ -1,0 +1,41 @@
+---
+# ==============================================================================
+# .clang-format - Formateador de Código C / C++ (Clean Code Standard)
+# Compatible con ClangFormat (LLVM) y la extension ms-vscode.cpptools de VS Code
+# ==============================================================================
+BasedOnStyle: LLVM
+Standard: Latest
+
+# --- Indentacion y Espacios ---
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
+
+# --- Bloques y Llaves ---
+BreakBeforeBraces: Attach
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Inline
+
+# --- Punteros y Referencias ---
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+
+# --- Espaciado ---
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceInEmptyBraces: Never
+SpacesInAngles: Never
+SpacesBeforeTrailingComments: 2
+
+# --- Inclusion de Cabeceras ---
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+...

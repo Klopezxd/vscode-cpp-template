@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 
 int main() {
     std::cout << "========================================" << std::endl;
@@ -8,12 +8,7 @@ int main() {
     std::cout << "========================================" << std::endl;
 
     // Demostración rápida de C++17
-    std::vector<std::string> tecnologias = {
-        "C++17 / C17",
-        "CMake",
-        "Ninja",
-        "VS Code"
-    };
+    std::vector<std::string> tecnologias = {"C++17 / C17", "CMake", "Ninja", "VS Code"};
 
     std::cout << "\nEntorno configurado con:" << std::endl;
     for (const auto& item : tecnologias) {
