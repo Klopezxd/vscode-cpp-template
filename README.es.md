@@ -1,5 +1,7 @@
 # Plantilla Moderna y Rápida para C / C++ en VS Code (Windows, Linux & macOS)
 
+> 🌐 **Language / Idioma:** [English](README.md) | **Español**
+
 [![CI - Build & Test](https://github.com/Klopezxd/vscode-cpp-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Klopezxd/vscode-cpp-template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
@@ -59,7 +61,7 @@ brew install cmake ninja
 
 ### Extensiones recomendadas en VS Code (Cualquier Sistema Operativo)
 Instala las extensiones oficiales desde el panel `Ctrl + Shift + X`:
-* **C/C++** (`ms-vscode.cpptools`) — IntelliSense, depuración GDB y autoformateo Clean Code.
+* **C/C++** (`ms-vscode.cpptools`) — IntelliSense, depuración GDB/LLDB y autoformateo Clean Code.
 * **CMake Tools** (`ms-vscode.cmake-tools`) — Compilación y ejecución directa con un clic.
 
 ---
@@ -94,7 +96,7 @@ Al abrir tu carpeta de proyecto por primera vez en VS Code:
    ```text
    CMake: Configurar
    ```
-2. Te pedirá seleccionar un kit (compilador): elige **`GCC ... x86_64-w64-mingw32`**.
+2. Te pedirá seleccionar un kit (compilador): elige tu compilador detectado (por ejemplo `GCC ... x86_64-w64-mingw32` en Windows, `GCC` en Linux o `Clang` en Mac).
    *(Si la lista estuviera vacía, dale a `[Buscar kits]` / `[Scan for kits]` y lo detectará).*
 3. ¡Listo! CMake Tools configurará el proyecto en milisegundos y no volverá a pedírtelo en esa carpeta.
 
@@ -123,7 +125,7 @@ MiProyecto/
 ├── include/           # Archivos de cabecera (.h / .hpp)
 ├── src/               # Implementaciones (.c / .cpp)
 │   └── main.cpp
-├── bin/               # Ejecutable final (main.exe)
+├── bin/               # Ejecutable final (main.exe / main)
 ├── build/             # Archivos intermedios de CMake (ignorado por Git)
 ├── CMakeLists.txt     # Script de construcción universal
 └── README.md
@@ -155,15 +157,15 @@ En la **barra de estado inferior** (al fondo de tu pantalla) verás los controle
 
 * **Compilar:** Presiona la tecla **`F7`** o haz clic en el botón **`⚙ Compilación`** de la barra inferior.
 * **Ejecutar:** Haz clic en el botón **`▷` (Play)** que está justo al lado del ícono de compilación en la barra inferior (o presiona `Ctrl + Shift + F5`).
-* **Depurar (Debugger GDB):** Presiona **`F5`** *(la ventana se pausará automáticamente al inicio de `main()` para que puedas inspeccionar tu código sin que se cierre)*.
+* **Depurar (Debugger GDB/LLDB):** Presiona **`F5`** *(la ventana se pausará automáticamente al inicio de `main()` para que puedas inspeccionar tu código sin que se cierre)*.
 * **Limpiar proyecto:** Abre la paleta de comandos (`Ctrl + Shift + P`) y escribe `CMake: Clean Rebuild`.
 
-### Desde la Terminal (PowerShell)
+### Desde la Terminal (PowerShell / Bash / Zsh)
 Si prefieres compilar y ejecutar mediante comandos, asegúrate de estar ubicado en la **carpeta raíz del proyecto**:
-* **En VS Code:** Abre la terminal integrada con **`Ctrl + ñ`** (o desde el menú superior: *Terminal -> Nuevo terminal* / Paleta `Ctrl + Shift + P`), que se posiciona automáticamente en la carpeta del proyecto.
-* **Desde Windows:** Abre PowerShell dentro de la carpeta (o navega con `cd ruta\al\proyecto`).
+* **En VS Code:** Abre la terminal integrada con **`Ctrl + ñ`** (o desde el menú superior: *Terminal -> Nuevo terminal* / Paleta `Ctrl + Shift + P`).
+* **Desde el sistema:** Abre PowerShell o tu terminal dentro de la carpeta.
 
-```powershell
+```bash
 # 1. Configurar el proyecto (solo la primera vez)
 cmake -B build -G Ninja
 
@@ -171,7 +173,10 @@ cmake -B build -G Ninja
 cmake --build build
 
 # 3. Ejecutar
+# En Windows:
 .\bin\main.exe
+# En Linux / macOS:
+./bin/main
 ```
 
 ### 💡 Alternativa ultrarrápida: Code Runner (Opcional)
@@ -185,7 +190,7 @@ cmake --build build
 
 ## 🛠️ Ventajas de este Enfoque
 
-1. **Sin variables de entorno manuales:** Scoop instala todo de forma limpia en el espacio de usuario.
+1. **Sin variables de entorno manuales:** Gestores de paquetes como Scoop, APT o Homebrew instalan todo de forma limpia.
 2. **IntelliSense automático:** CMake Tools genera la base de datos de compilación automáticamente. No necesitas lidiar con archivos `c_cpp_properties.json` ni escribir rutas de include a mano.
 3. **Compilación incremental instantánea:** Ninja solo recompila los archivos modificados, ahorrando tiempo en proyectos con varios archivos.
 4. **Multiplataforma Universal:** La misma estructura y `CMakeLists.txt` funcionan sin cambios en Windows, Linux (y WSL) y macOS.
