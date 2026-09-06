@@ -1,18 +1,24 @@
-# Ignorar todo dentro de bin excepto .gitkeep para mantener la carpeta vacía
+# Carpeta de compilación de CMake
+build/
+.cache/
+compile_commands.json
+
+# Ejecutables y binarios generados
 bin/*
 !bin/.gitkeep
-
-# Ignorar compilador portable MinGW
-mingw64/
-
-# Archivos compilados y ejecutables
 *.exe
 *.obj
 *.o
 *.dll
 
-# Configuraciones personales de VS Code (no subir)
+# Compilador local legacy (si existiera)
+mingw64/
+
+# Configuraciones temporales y personales de VS Code
 .vscode/*.code-workspace
+
+# Archivos personales / privados
+USER.md
 
 # Archivos de sistema Windows
 Thumbs.db

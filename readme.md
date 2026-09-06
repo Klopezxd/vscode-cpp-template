@@ -1,106 +1,153 @@
-# Plantilla Portable para C / C++ en VS Code (Windows)
+# Plantilla Moderna y Rápida para C / C++ en VS Code (Windows)
 
-Esta plantilla te permite compilar y ejecutar programas en C y C++ con VS Code en Windows, usando un compilador MinGW portátil incluido en el proyecto (o descargado aparte).
-
----
-
-## 📦 Estructura del proyecto
-
-```
-C_C++_VSCode_Template/
-├─ .vscode/           # Configuraciones para VS Code (tareas, launch)
-├─ bin/               # Ejecutables compilados (se crea automáticamente)
-├─ include/           # Archivos headers (.h)
-├─ mingw64/           # Compilador portable MinGW (no incluido en repo, descárgalo)
-├─ src/               # Código fuente (.c y .cpp)
-├─ Makefile           # Archivo para compilar con mingw32-make
-└─ README.md
-```
+Plantilla lista para usar en proyectos de **C** y **C++** sobre Windows con **VS Code**. Diseñada para eliminar el tiempo perdido en configuraciones manuales: compila tanto ejercicios simples de un solo archivo como proyectos modulares complejos mediante **CMake**, **Ninja** y **Scoop**.
 
 ---
 
-## ⚙️ Instalación del compilador portable (MinGW-w64)
+## 🚀 Inicio Rápido (Setup en 3 minutos)
 
-Por motivos de tamaño, **no incluimos la carpeta `mingw64/` con el compilador en este repositorio**.
-Sigue estos pasos para descargarlo y usarlo:
+Si estás en una computadora nueva o formateada, abre **PowerShell** (no necesitas permisos de Administrador) y ejecuta:
 
-1. Ve al sitio de [WinLibs](https://winlibs.com/), donde están las versiones portables más recientes.
+### 1. Instalar Scoop (si aún no lo tienes)
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+```
 
-2. Descarga esta versión recomendada o una versión superior si está disponible:
+### 2. Instalar Compilador y Herramientas
+Instala GCC (con soporte UCRT y POSIX threads), CMake y el compilador ultrarrápido Ninja en un solo comando:
+```powershell
+scoop install mingw-winlibs cmake ninja
+```
 
-   **Versión en inglés:**
-   - *Release versions*
-   - *UCRT runtime*
-   - **GCC 15.1.0 (with POSIX threads) + MinGW-w64 13.0.0 UCRT - release 2 (LATEST)**
-   - *Win64 (without LLVM/Clang/LLD/LLDB): Zip archive*
-
-   **Versión en español:**
-   - *Versiones de lanzamiento*
-   - *Tiempo de ejecución de UCRT*
-   - **GCC 15.1.0 (con subprocesos POSIX) + MinGW-w64 13.0.0 UCRT - versión 2 (ÚLTIMA)**
-   - *Win64 (sin LLVM/Clang/LLD/LLDB): Archivo Zip*
-
-   > ⚠️ **Puedes usar esta versión o cualquier otra igual o superior, siempre que tenga soporte UCRT y esté basada en POSIX threads (no MCF).**
-
-3. Descomprime el archivo ZIP descargado.
-
-4. Copia la carpeta descomprimida y renómbrala como `mingw64` en la raíz de este proyecto.
+### 3. Extensiones recomendadas en VS Code
+Instala las extensiones oficiales desde el panel `Ctrl + Shift + X`:
+* **C/C++** (`ms-vscode.cpptools`) — IntelliSense y depuración.
+* **CMake Tools** (`ms-vscode.cmake-tools`) — Integración de compilación y ejecución directa.
 
 ---
 
-## 🚀 Cómo compilar y ejecutar
+## 📋 Cómo crear un NUEVO proyecto con esta plantilla
 
-- La carpeta `bin/` donde se guarda el ejecutable se crea automáticamente al compilar (si es que no existe).
-- El Makefile detecta si hay archivos `.c` o `.cpp` en la carpeta `src/` y usa el compilador correcto.
-- Abre la carpeta del proyecto en VS Code.
+Para iniciar un proyecto nuevo en tu equipo, tienes dos opciones:
 
-### Atajos de teclado para tareas en VS Code
+### Opción 1: Clonar o usar como Plantilla en GitHub (Recomendado)
+1. En GitHub, haz clic en el botón verde **"Use this template"** -> **"Create a new repository"**.
+2. Clona tu nuevo repositorio y ábrelo en VS Code.
 
-- **Compilar:** `Ctrl + Shift + B`
-- **Ejecutar:** `Ctrl + Alt + R`
-- **Limpiar (clean):** `Ctrl + Alt + C`
+### Opción 2: Copiar los archivos a una carpeta limpia
+Si vas a crear una carpeta nueva manualmente en tu PC (por ejemplo `C:\Proyectos\MiTarea`), asegúrate de **copiar estos archivos esenciales** desde esta plantilla:
 
-> Si no tienes asignados estos atajos, agrega estas configuraciones en tu archivo `keybindings.json` (abre paleta de comandos → "Preferences: Open Keyboard Shortcuts (JSON)"):
-
-```json
-[
-  {
-    "key": "ctrl+alt+r",
-    "command": "workbench.action.tasks.runTask",
-    "args": "Ejecutar programa"
-  },
-  {
-    "key": "ctrl+alt+c",
-    "command": "workbench.action.tasks.runTask",
-    "args": "Clean"
-  }
-]
+```text
+MiTarea/
+├── .vscode/               <-- Contiene settings.json, launch.json y extensions.json
+├── src/                   <-- Pon aquí tu main.cpp o ejercicio.c
+├── CMakeLists.txt         <-- El cerebro de la compilación
+└── .gitignore             <-- Para no subir basura a git
 ```
 
-### Ejecutar manualmente en la terminal integrada
+---
 
-Si quieres ejecutar el programa manualmente:
+## ⚙️ Primera apertura en VS Code (Paso único)
 
-```bash
+Al abrir tu carpeta de proyecto por primera vez en VS Code:
+
+1. Presiona **`Ctrl + Shift + P`** y escribe:
+   ```text
+   CMake: Configurar
+   ```
+2. Te pedirá seleccionar un kit (compilador): elige **`GCC ... x86_64-w64-mingw32`**.
+   *(Si la lista estuviera vacía, dale a `[Buscar kits]` / `[Scan for kits]` y lo detectará).*
+3. ¡Listo! CMake Tools configurará el proyecto en milisegundos y no volverá a pedírtelo en esa carpeta.
+
+---
+
+## 📁 Estructuras de Proyecto Compatibles
+
+Esta plantilla se adapta automáticamente sin tocar el `CMakeLists.txt`:
+
+### Modo Simple (Un solo archivo)
+Ideal para pruebas de concepto, algoritmos, scripts rápidos o programas de un solo archivo:
+```
+MiProyecto/
+├── src/
+│   └── main.cpp (o main.c / ejercicio.cpp)
+├── .vscode/
+└── CMakeLists.txt
+```
+* Simplemente coloca tu código en `src/main.cpp` (o en la raíz del proyecto).
+* No necesitas crear carpetas adicionales ni modificar configuraciones.
+
+### Modo Modular (Proyectos completos)
+Ideal para proyectos más grandes, estructuras de datos o librerías:
+```
+MiProyecto/
+├── include/           # Archivos de cabecera (.h / .hpp)
+├── src/               # Implementaciones (.c / .cpp)
+│   └── main.cpp
+├── bin/               # Ejecutable final (main.exe)
+├── build/             # Archivos intermedios de CMake (ignorado por Git)
+├── CMakeLists.txt     # Script de construcción universal
+└── README.md
+```
+* Coloca las cabeceras en `include/` y las fuentes en `src/`.
+* `CMakeLists.txt` detecta y enlaza todos los archivos automáticamente.
+
+---
+
+## 📝 Cómo agregar nuevos archivos (Flujo de trabajo)
+
+* **Archivos de código (`.cpp` o `.c`):**
+  * Guárdalos siempre dentro de la carpeta **`src/`**.
+  * `CMakeLists.txt` los detecta automáticamente. No necesitas editar ningún archivo de configuración: solo crea el archivo, guarda y compila (`F7`).
+* **Archivos de cabecera (`.h` o `.hpp`):**
+  * Guárdalos dentro de la carpeta **`include/`**.
+  * Para usarlos desde cualquier archivo en `src/`, simplemente escribe `#include "mi_cabecera.h"`. CMake ya tiene la ruta configurada, así que no hace falta escribir rutas relativas complejas.
+  * *(Nota: si por comodidad guardas un `.h` dentro de `src/`, también funcionará, pero tenerlos en `include/` es la buena práctica recomendada).*
+* ⚠️ **Regla importante sobre `main()`:**
+  * En C/C++ solo puede haber **una única función `main()`** por proyecto compilado.
+  * Si estás creando diferentes programas o pruebas sueltas, mantén solo un archivo con `main()` activo a la vez (o comenta la función `main()` de los demás) para evitar errores de duplicación al compilar.
+
+---
+
+## ⌨️ Cómo Compilar y Ejecutar
+
+### 1. Desde la Barra Inferior de VS Code (Recomendado)
+En la **barra de estado inferior** (al fondo de tu pantalla) verás los controles directos de CMake:
+
+* **Compilar:** Presiona la tecla **`F7`** o haz clic en el botón **`⚙ Compilación`** de la barra inferior.
+* **Ejecutar:** Haz clic en el botón **`▷` (Play)** que está justo al lado del ícono de compilación en la barra inferior (o presiona `Ctrl + Shift + F5`).
+* **Depurar (Debugger GDB):** Presiona **`F5`** *(la ventana se pausará automáticamente al inicio de `main()` para que puedas inspeccionar tu código sin que se cierre)*.
+* **Limpiar proyecto:** Abre la paleta de comandos (`Ctrl + Shift + P`) y escribe `CMake: Clean Rebuild`.
+
+### Desde la Terminal (PowerShell)
+Si prefieres compilar y ejecutar mediante comandos, asegúrate de estar ubicado en la **carpeta raíz del proyecto**:
+* **En VS Code:** Abre la terminal integrada con **`Ctrl + ñ`** (o desde el menú superior: *Terminal -> Nuevo terminal* / Paleta `Ctrl + Shift + P`), que se posiciona automáticamente en la carpeta del proyecto.
+* **Desde Windows:** Abre PowerShell dentro de la carpeta (o navega con `cd ruta\al\proyecto`).
+
+```powershell
+# 1. Configurar el proyecto (solo la primera vez)
+cmake -B build -G Ninja
+
+# 2. Compilar
+cmake --build build
+
+# 3. Ejecutar
 .\bin\main.exe
 ```
 
-## 🧹 Limpiar archivos compilados
+### 💡 Alternativa ultrarrápida: Code Runner (Opcional)
+**¿Qué es?** Es una extensión muy popular en VS Code que te permite ejecutar código al vuelo con un solo clic o con el atajo **`Ctrl + Alt + N`**.
 
-Para borrar los ejecutables generados desde la terminal:
-
-```bash
-mingw32-make clean
-```
-
-O ejecuta la tarea "Clean" desde VS Code (`Ctrl + Alt + C`).
+* **Si te da curiosidad probarla:** Solo instala la extensión **Code Runner** (`formulahendry.code-runner`) desde la pestaña de Extensiones (`Ctrl + Shift + X`).
+* **Ya viene preconfigurada:** Esta plantilla ya incluye en `.vscode/settings.json` los ajustes óptimos para que, al presionar **`Ctrl + Alt + N`** (o el botón ▶️ *Run Code* arriba a la derecha), limpie automáticamente la consola (`Clear-Host`), compile con GCC/G++ y corra tu programa en la terminal integrada sin tocar nada más.
+* **Tú decides:** Usa **CMake Tools** (barra inferior) para proyectos estructurados y depuración con GDB, o **Code Runner** para pruebas rápidas y programas de un solo archivo. Ambos conviven a la perfección en esta plantilla.
 
 ---
 
-## 📝 Notas importantes
+## 🛠️ Ventajas de este Enfoque
 
-- Mantén la estructura de carpetas para que las rutas relativas funcionen.
-- Agrega más archivos `.c` o `.cpp` en `src/` si deseas.
-- Los headers van en `include/` y el Makefile los incluye automáticamente.
-
-**¿Dudas o sugerencias?** ¡Abre un issue en GitHub!
+1. **Sin variables de entorno manuales:** Scoop instala todo de forma limpia en el espacio de usuario.
+2. **IntelliSense automático:** CMake Tools genera la base de datos de compilación automáticamente. No necesitas lidiar con archivos `c_cpp_properties.json` ni escribir rutas de include a mano.
+3. **Compilación incremental instantánea:** Ninja solo recompila los archivos modificados, ahorrando tiempo en proyectos con varios archivos.
+4. **Multiplataforma:** La misma estructura y `CMakeLists.txt` funcionan sin cambios en Windows, WSL2 y Linux.
