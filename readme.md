@@ -1,29 +1,51 @@
-# Plantilla Moderna y Rápida para C / C++ en VS Code (Windows)
+# Plantilla Moderna y Rápida para C / C++ en VS Code (Windows & Linux)
 
-Plantilla lista para usar en proyectos de **C** y **C++** sobre Windows con **VS Code**. Diseñada para eliminar el tiempo perdido en configuraciones manuales: compila tanto ejercicios simples de un solo archivo como proyectos modulares complejos mediante **CMake**, **Ninja** y **Scoop**.
+[![CI - Build & Test](https://github.com/Klopezxd/vscode-cpp-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Klopezxd/vscode-cpp-template/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)
+![C17](https://img.shields.io/badge/C-17-blue.svg)
+![CMake](https://img.shields.io/badge/CMake-3.15%2B-064F8C.svg)
+![Ninja](https://img.shields.io/badge/Ninja-Build-black.svg)
+
+Plantilla multiplataforma lista para usar en proyectos de **C** y **C++** sobre **Windows, Linux y WSL** con **VS Code**. Diseñada para eliminar el tiempo perdido en configuraciones manuales: compila tanto ejercicios simples de un solo archivo como proyectos modulares complejos mediante **CMake**, **Ninja** y **ClangFormat**.
 
 ---
 
 ## 🚀 Inicio Rápido (Setup en 3 minutos)
 
-Si estás en una computadora nueva o formateada, abre **PowerShell** (no necesitas permisos de Administrador) y ejecuta:
+### En Windows (PowerShell sin permisos de Administrador)
 
-### 1. Instalar Scoop (si aún no lo tienes)
+#### 1. Instalar Scoop (si aún no lo tienes)
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
-### 2. Instalar Compilador y Herramientas
-Instala GCC (con soporte UCRT y POSIX threads), CMake y el compilador ultrarrápido Ninja en un solo comando:
+#### 2. Instalar Compilador y Herramientas
 ```powershell
 scoop install mingw-winlibs cmake ninja
 ```
 
-### 3. Extensiones recomendadas en VS Code
+---
+
+### En Linux / WSL (Ubuntu, Debian o AlmaLinux/CERN)
+
+Ejecuta en tu terminal según tu distribución:
+
+```bash
+# Ubuntu / Debian / WSL2
+sudo apt update && sudo apt install -y build-essential cmake ninja-build gdb
+
+# AlmaLinux / Fedora / RHEL (Entorno CERN)
+sudo dnf install -y gcc-c++ cmake ninja-build gdb
+```
+
+---
+
+### Extensiones recomendadas en VS Code (Cualquier Sistema Operativo)
 Instala las extensiones oficiales desde el panel `Ctrl + Shift + X`:
-* **C/C++** (`ms-vscode.cpptools`) — IntelliSense y depuración.
-* **CMake Tools** (`ms-vscode.cmake-tools`) — Integración de compilación y ejecución directa.
+* **C/C++** (`ms-vscode.cpptools`) — IntelliSense, depuración GDB y autoformateo Clean Code.
+* **CMake Tools** (`ms-vscode.cmake-tools`) — Compilación y ejecución directa con un clic.
 
 ---
 

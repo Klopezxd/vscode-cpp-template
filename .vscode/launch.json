@@ -10,9 +10,18 @@
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}",
       "environment": [],
-      "externalConsole": true,
       "MIMode": "gdb",
-      "miDebuggerPath": "gdb.exe",
+      "windows": {
+        "externalConsole": true,
+        "miDebuggerPath": "gdb.exe"
+      },
+      "linux": {
+        "externalConsole": false,
+        "miDebuggerPath": "/usr/bin/gdb"
+      },
+      "osx": {
+        "MIMode": "lldb"
+      },
       "setupCommands": [
         {
           "description": "Habilitar formateo visual de estructuras (pretty printing)",

@@ -1,0 +1,44 @@
+name: CI - Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Ninja en Linux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Configurar MinGW en Windows
+        if: runner.os == 'Windows'
+        uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x64
+
+      - name: Configurar proyecto con CMake y Ninja
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Compilar proyecto
+        run: cmake --build build
+
+      - name: Ejecutar binario (Linux)
+        if: runner.os == 'Linux'
+        run: ./bin/main
+
+      - name: Ejecutar binario (Windows)
+        if: runner.os == 'Windows'
+        run: .\bin\main.exe
