@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Clonar repositorio
@@ -22,6 +22,10 @@ jobs:
       - name: Instalar Ninja en Linux
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Instalar Ninja en macOS
+        if: runner.os == 'macOS'
+        run: brew install ninja
 
       - name: Configurar entorno de compilación en Windows
         if: runner.os == 'Windows'
@@ -33,8 +37,8 @@ jobs:
       - name: Compilar proyecto
         run: cmake --build build
 
-      - name: Ejecutar binario (Linux)
-        if: runner.os == 'Linux'
+      - name: Ejecutar binario (Linux / macOS)
+        if: runner.os != 'Windows'
         run: ./bin/main
 
       - name: Ejecutar binario (Windows)

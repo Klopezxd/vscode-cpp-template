@@ -1,13 +1,14 @@
-# Plantilla Moderna y Rápida para C / C++ en VS Code (Windows & Linux)
+# Plantilla Moderna y Rápida para C / C++ en VS Code (Windows, Linux & macOS)
 
 [![CI - Build & Test](https://github.com/Klopezxd/vscode-cpp-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Klopezxd/vscode-cpp-template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
 ![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)
 ![C17](https://img.shields.io/badge/C-17-blue.svg)
 ![CMake](https://img.shields.io/badge/CMake-3.15%2B-064F8C.svg)
 ![Ninja](https://img.shields.io/badge/Ninja-Build-black.svg)
 
-Plantilla multiplataforma lista para usar en proyectos de **C** y **C++** sobre **Windows, Linux y WSL** con **VS Code**. Diseñada para eliminar el tiempo perdido en configuraciones manuales: compila tanto ejercicios simples de un solo archivo como proyectos modulares complejos mediante **CMake**, **Ninja** y **ClangFormat**.
+Plantilla multiplataforma universal lista para usar en proyectos de **C** y **C++** sobre **Windows, Linux, WSL y macOS** con **VS Code**. Diseñada para eliminar el tiempo perdido en configuraciones manuales: compila tanto ejercicios simples de un solo archivo como proyectos modulares complejos mediante **CMake**, **Ninja** y **ClangFormat**.
 
 ---
 
@@ -38,6 +39,20 @@ sudo apt update && sudo apt install -y build-essential cmake ninja-build gdb
 
 # AlmaLinux / Fedora / RHEL (Entorno CERN)
 sudo dnf install -y gcc-c++ cmake ninja-build gdb
+```
+
+---
+
+### En macOS (Terminal con Homebrew)
+
+Abre la Terminal y ejecuta:
+
+```bash
+# 1. Herramientas de desarrollo de Apple (compilador Clang y depurador LLDB)
+xcode-select --install
+
+# 2. Instalar CMake y Ninja
+brew install cmake ninja
 ```
 
 ---
@@ -173,5 +188,5 @@ cmake --build build
 1. **Sin variables de entorno manuales:** Scoop instala todo de forma limpia en el espacio de usuario.
 2. **IntelliSense automático:** CMake Tools genera la base de datos de compilación automáticamente. No necesitas lidiar con archivos `c_cpp_properties.json` ni escribir rutas de include a mano.
 3. **Compilación incremental instantánea:** Ninja solo recompila los archivos modificados, ahorrando tiempo en proyectos con varios archivos.
-4. **Multiplataforma:** La misma estructura y `CMakeLists.txt` funcionan sin cambios en Windows, WSL2 y Linux.
+4. **Multiplataforma Universal:** La misma estructura y `CMakeLists.txt` funcionan sin cambios en Windows, Linux (y WSL) y macOS.
 5. **Clean Code Automático:** Incluye `.clang-format` preconfigurado con reglas estándar de la industria. Al guardar con **`Ctrl + S`**, VS Code alinea la indentación a 4 espacios, ordena includes y formatea llaves automáticamente sin alterar la lógica de tu código.
