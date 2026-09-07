@@ -4,6 +4,15 @@
   "cmake.generator": "Ninja",
   "cmake.buildDirectory": "${workspaceFolder}/build",
   "cmake.configureOnOpen": false,
+  "cmake.configureOnEdit": false,
+  "cmake.revealLog": "error",
+  "cmake.loggingLevel": "warning",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/build/**": true,
+    "**/bin/**": true
+  },
   "editor.formatOnSave": true,
   "C_Cpp.formatting": "clangFormat",
   "[c]": {
