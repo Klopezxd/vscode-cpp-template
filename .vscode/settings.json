@@ -3,7 +3,7 @@
   "cmake.sourceDirectory": "${workspaceFolder}",
   "cmake.generator": "Ninja",
   "cmake.buildDirectory": "${workspaceFolder}/build",
-  "cmake.configureOnOpen": true,
+  "cmake.configureOnOpen": false,
   "editor.formatOnSave": true,
   "C_Cpp.formatting": "clangFormat",
   "[c]": {
